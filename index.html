@@ -2,33 +2,22 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <!-- منع التكبير والتصغير (الزوم) لضمان ثبات الصفحة على الهاتف -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>رسائل آية</title>
 
     <meta property="og:title" content="رسائل آية 💖">
     <meta property="og:description" content="من شهاب لأجمل بنوتة.. اية اختاري الصفحة ✨">
-    <meta property="og:image" content="https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg">
+    <!-- تم تحسين رابط الصورة لسرعة التحميل -->
+    <meta property="og:image" content="https://res.cloudinary.com/db9h7zm1h/image/upload/w_600,q_auto,f_auto/v1771008727/jpfmjcfcbjfy60yu68qf.jpg">
     <meta property="og:type" content="website">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="رسائل آية 💖">
-    <meta name="twitter:description" content="من شهاب لأجمل بنوتة.. اية اختاري الصفحة ✨">
-    <meta name="twitter:image" content="https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg">
-    
-    <!-- إعدادات تطبيق الويب (PWA) ليتم تثبيته على الشاشة الرئيسية واسمه ♥Aya وأيقونة قمر -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="♥Aya">
     <meta name="theme-color" content="#020208">
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn4yZPC90ZXh0Pjwvc3ZnPg==">
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iIzAyMDIwOCIvPjx0ZXh0IHg9IjUwIiB5PSI1MCIgZm9udC1zaXplPSI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPvCfjJk8L3RleHQ+PC9zdmc+">
-    <link rel="manifest" href='data:application/manifest+json,{"name":"♥Aya","short_name":"♥Aya","start_url":".","display":"standalone","background_color":"#020208","theme_color":"#020208","icons":[{"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn4yZPC90ZXh0Pjwvc3ZnPg==","sizes":"192x192","type":"image/svg+xml"},{"src":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOWVtIiBmb250LXNpemU9IjkwIj7wn4yZPC90ZXh0Pjwvc3ZnPg==","sizes":"512x512","type":"image/svg+xml"}]}'>
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
@@ -42,7 +31,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* منع تحديد النص وتأثيرات المتصفح الافتراضية لمنع الزوم العشوائي */
             -webkit-user-select: none;
             user-select: none;
             -webkit-touch-callout: none;
@@ -58,34 +46,26 @@
             height: 100vh;
             background: radial-gradient(circle at center, #0a0a25 0%, #010105 100%);
             z-index: -1;
-            contain: paint; 
         }
 
-        /* طبقات النجوم المتعددة */
+        /* تم تقليل التعقيد في النجوم لتخفيف اللاج */
         .stars-layer {
             position: absolute;
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(1px 1px at 10% 10%, #fff, transparent),
-                radial-gradient(1.2px 1.2px at 25% 35%, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 25% 35%, #fff, transparent),
                 radial-gradient(1.5px 1.5px at 50% 50%, #fff, transparent),
-                radial-gradient(1px 1px at 85% 15%, #fff, transparent),
-                radial-gradient(1.1px 1.1px at 95% 85%, #fff, transparent),
-                radial-gradient(1.5px 1.5px at 15% 75%, #fff, transparent),
-                radial-gradient(1px 1px at 40% 60%, #fff, transparent),
                 radial-gradient(2px 2px at 70% 80%, #fff, transparent),
-                radial-gradient(1px 1px at 75% 25%, #fff, transparent),
-                radial-gradient(1.3px 1.3px at 35% 15%, #fff, transparent);
-            background-size: 180px 180px;
-            animation: stars-twinkle 6s ease-in-out infinite alternate;
-            transform: translateZ(0);
-            will-change: transform, opacity;
+                radial-gradient(1.5px 1.5px at 15% 75%, #fff, transparent);
+            background-size: 200px 200px;
+            animation: stars-twinkle 5s ease-in-out infinite alternate;
+            will-change: opacity; /* تم إزالة transform لتخفيف الرام */
         }
 
         @keyframes stars-twinkle {
-            0% { opacity: 0.3; transform: scale(0.98) translateZ(0); }
-            100% { opacity: 1; transform: scale(1.02) translateZ(0); }
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
         }
 
         /* --- البطاقة مع شعاعين ضوئيين --- */
@@ -99,36 +79,33 @@
             justify-content: center;
             align-items: center;
             background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
-            transform: translateZ(0);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); /* تم تقليل الظل قليلاً */
         }
 
-        /* الشعاع الأول */
         .animated-border-card::before {
             content: '';
             position: absolute;
             width: 200%;
             height: 200%;
             background: conic-gradient(transparent, transparent, transparent, #ffffff);
-            animation: rotate-border 12s linear infinite;
+            animation: rotate-border 8s linear infinite;
             will-change: transform;
         }
 
-        /* الشعاع الثاني */
         .animated-border-card::after {
             content: '';
             position: absolute;
             width: 200%;
             height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, rgba(255, 255, 255, 0.6));
-            animation: rotate-border 12s linear infinite;
-            animation-delay: -6s;
+            background: conic-gradient(transparent, transparent, transparent, rgba(255, 255, 255, 0.5));
+            animation: rotate-border 8s linear infinite;
+            animation-delay: -4s;
             will-change: transform;
         }
 
         @keyframes rotate-border {
-            0% { transform: rotate(0deg) translateZ(0); }
-            100% { transform: rotate(360deg) translateZ(0); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* المحتوى الداخلي للبطاقة */
@@ -136,93 +113,65 @@
             position: relative;
             width: 100%;
             height: 100%;
-            background: rgba(10, 10, 28, 0.92);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: rgba(10, 10, 28, 0.85);
+            /* تم تقليل الـ blur لتسريع الهاتف بشكل ملحوظ */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border-radius: calc(2.5rem - 3px);
             z-index: 10;
             padding: 26px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden;
-            transform: translateZ(0);
-            will-change: transform;
         }
 
-        /* نجوم داخل البطاقة */
-        .card-stars {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(1px 1px at 50% 50%, white, transparent);
-            background-size: 50px 50px;
-            opacity: 0.25;
-            z-index: -1;
-            transform: translateZ(0);
-        }
-
-        /* إطار الصورة - أبيض ورفيع */
         .img-frame {
-            border: 1px solid #ffffff; /* تم تصغير الإطار وجعله أبيض نقي */
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-            transform: translateZ(0);
+            border: 1px solid #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
-        /* تصميم الأزرار الزجاجية بإطار أبيض (مخصص للمس والهواتف) */
+        /* تصميم الأزرار (بدون blur لتجنب اللاج) */
         .glass-btn {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08); /* لون شفاف بدون ضباب */
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
             transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            position: relative;
-            overflow: hidden;
-            transform: translateZ(0);
             text-decoration: none;
-            -webkit-tap-highlight-color: transparent; /* إخفاء المربع الرمادي عند اللمس في بعض الهواتف */
+            -webkit-tap-highlight-color: transparent;
         }
 
-        /* تأثير اللمس فقط بدلاً من الماوس */
         .glass-btn:active {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             border-color: #ffffff;
-            transform: translateY(2px) translateZ(0);
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+            transform: translateY(2px);
         }
-
     </style>
 </head>
 <body>
 
-    <!-- خلفية الفضاء الساحرة بنجوم كثيفة جداً -->
+    <!-- خلفية الفضاء (طبقتين فقط تكفي جداً للمنظر الجمالي وتمنع اللاج) -->
     <div class="space-background">
         <div class="stars-layer"></div>
-        <div class="stars-layer" style="background-size: 220px 220px; animation-duration: 9s; opacity: 0.7;"></div>
-        <div class="stars-layer" style="background-size: 350px 350px; animation-duration: 12s; opacity: 0.5;"></div>
-        <div class="stars-layer" style="background-size: 450px 450px; animation-duration: 15s; opacity: 0.3;"></div>
+        <div class="stars-layer" style="background-size: 300px 300px; animation-duration: 7s; opacity: 0.6; animation-delay: -2s;"></div>
     </div>
 
-    <!-- البطاقة الرئيسية بضوء مزدوج يلف ببطء -->
+    <!-- البطاقة الرئيسية -->
     <div class="animated-border-card">
         <div class="card-content">
-            <!-- نجوم تلمع داخل البطاقة -->
-            <div class="card-stars"></div>
-
-            <!-- صورة آية -->
-            <img src="https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg" 
+            
+            <!-- تم إضافة w_300,q_auto,f_auto لرابط الصورة لضغطها وتسريعها -->
+            <img src="https://res.cloudinary.com/db9h7zm1h/image/upload/w_300,q_auto,f_auto/v1771008727/jpfmjcfcbjfy60yu68qf.jpg" 
                  alt="غلاف آية" 
                  class="w-32 aspect-[9/16] object-cover rounded-2xl mb-7 img-frame">
 
-            <h1 class="text-xl font-extrabold text-white mb-6 text-center tracking-wide drop-shadow-lg">
+            <h1 class="text-xl font-extrabold text-white mb-6 text-center tracking-wide drop-shadow-md">
                 بحبك يا أجمل بنوتة
             </h1>
 
-            <!-- شبكة الأزرار الأنيقة (بدون تأثيرات ماوس) -->
             <div class="grid grid-cols-1 gap-4 w-full">
                 <div class="grid grid-cols-2 gap-3">
                     <a href="Aya4.html" class="glass-btn py-3 text-sm rounded-xl">صفحة آية (1)</a>
@@ -232,7 +181,7 @@
                     <a href="Aya2.html" class="glass-btn py-3 text-sm rounded-xl">صفحة آية (3)</a>
                     <a href="Aya3.html" class="glass-btn py-3 text-sm rounded-xl">صفحة آية (4)</a>
                 </div>
-                <a href="Aya.html" class="glass-btn py-3.5 text-sm rounded-xl w-full border-white/50">
+                <a href="Aya.html" class="glass-btn py-3.5 text-sm rounded-xl w-full border-white/40">
                       صفحة آية (5) 
                 </a>
             </div>
