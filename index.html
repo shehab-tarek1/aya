@@ -33,15 +33,17 @@
             justify-content: center;
         }
 
-        /* --- خلفية الفضاء مع نجوم كثيفة جداً --- */
+        /* --- خلفية الفضاء --- */
         .space-background {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background: radial-gradient(circle at center, #0a0a25 0%, #010105 100%);
             z-index: -1;
+            /* عزل الخلفية لعدم إعادة رسمها بالكامل عند الزوم */
+            contain: paint; 
         }
 
         /* طبقات النجوم المتعددة */
@@ -62,25 +64,31 @@
                 radial-gradient(1.3px 1.3px at 35% 15%, #fff, transparent);
             background-size: 180px 180px;
             animation: stars-twinkle 6s ease-in-out infinite alternate;
+            
+            /* تحسين الأداء: نقل المعالجة إلى كارت الشاشة GPU لمنع التقطيع */
+            transform: translateZ(0);
+            will-change: transform, opacity;
         }
 
         @keyframes stars-twinkle {
-            0% { opacity: 0.3; transform: scale(0.98); }
-            100% { opacity: 1; transform: scale(1.02); }
+            0% { opacity: 0.3; transform: scale(0.98) translateZ(0); }
+            100% { opacity: 1; transform: scale(1.02) translateZ(0); }
         }
 
-        /* --- البطاقة مع شعاعين ضوئيين بلفوا ببطء --- */
+        /* --- البطاقة مع شعاعين ضوئيين --- */
         .animated-border-card {
             position: relative;
             width: 320px;
             border-radius: 2.5rem;
             overflow: hidden;
-            padding: 3px; /* سمك الإطار */
+            padding: 3px;
             display: flex;
             justify-content: center;
             align-items: center;
             background: rgba(255, 255, 255, 0.05);
             box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            /* تسريع العرض */
+            transform: translateZ(0);
         }
 
         /* الشعاع الأول */
@@ -91,9 +99,10 @@
             height: 200%;
             background: conic-gradient(transparent, transparent, transparent, #ffffff);
             animation: rotate-border 8s linear infinite;
+            will-change: transform;
         }
 
-        /* الشعاع الثاني (تمت إعادته كما طلبت) */
+        /* الشعاع الثاني */
         .animated-border-card::after {
             content: '';
             position: absolute;
@@ -101,12 +110,13 @@
             height: 200%;
             background: conic-gradient(transparent, transparent, transparent, rgba(255, 255, 255, 0.6));
             animation: rotate-border 8s linear infinite;
-            animation-delay: -4s; /* نصف الوقت بالضبط ليكون في الجهة المقابلة */
+            animation-delay: -4s;
+            will-change: transform;
         }
 
         @keyframes rotate-border {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% { transform: rotate(0deg) translateZ(0); }
+            100% { transform: rotate(360deg) translateZ(0); }
         }
 
         /* المحتوى الداخلي للبطاقة */
@@ -116,6 +126,7 @@
             height: 100%;
             background: rgba(10, 10, 28, 0.92);
             backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border-radius: calc(2.5rem - 3px);
             z-index: 10;
             padding: 26px;
@@ -123,6 +134,10 @@
             flex-direction: column;
             align-items: center;
             overflow: hidden;
+            
+            /* حل مشكلة اللاج الخاصة بـ backdrop-filter عند التكبير */
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         /* نجوم داخل البطاقة */
@@ -133,6 +148,8 @@
             background-size: 50px 50px;
             opacity: 0.25;
             z-index: -1;
+            /* منع تأثيرها على الأداء */
+            transform: translateZ(0);
         }
 
         /* إطار الصورة الأبيض */
@@ -140,10 +157,11 @@
             border: 2px solid white;
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
             transition: transform 0.4s ease;
+            will-change: transform;
         }
-        
+
         .img-frame:hover {
-            transform: scale(1.08);
+            transform: scale(1.08) translateZ(0);
         }
 
         /* تصميم الأزرار الزجاجية بإطار أبيض */
@@ -157,14 +175,16 @@
             justify-content: center;
             font-weight: bold;
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             position: relative;
             overflow: hidden;
+            transform: translateZ(0); /* تسريع الأزرار أيضاً */
         }
 
         .glass-btn:hover {
             background: rgba(255, 255, 255, 0.15);
             border-color: #ffffff;
-            transform: translateY(-3px);
+            transform: translateY(-3px) translateZ(0);
             box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
         }
 
@@ -175,7 +195,7 @@
             top: 0; left: -100%;
             width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: 0.5s;
+            transition: left 0.5s ease;
         }
         .glass-btn:hover::after {
             left: 100%;
@@ -193,12 +213,12 @@
         <div class="stars-layer" style="background-size: 450px 450px; animation-duration: 15s; opacity: 0.3;"></div>
     </div>
 
-    <!-- البطاقة الرئيسية بضوء مزدوج بلف ببطء -->
+    <!-- البطاقة الرئيسية بضوء مزدوج يلف ببطء -->
     <div class="animated-border-card">
         <div class="card-content">
             <!-- نجوم تلمع داخل البطاقة -->
             <div class="card-stars"></div>
-            
+
             <!-- صورة آية بنسبة 9:16 -->
             <img src="https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg" 
                  alt="غلاف آية" 
@@ -222,7 +242,7 @@
                       صفحة آية (5) 
                 </a>
             </div>
-            
+
         </div>
     </div>
 
