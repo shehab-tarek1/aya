@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>لآية قلبي</title>
+    
+    <!-- روابط الصور والخطوط -->
+    <link rel="preload" as="image" href="https://raw.githubusercontent.com/shehabt1000-boop/Moussa/8b657a1205d359eff3b68dfafca91b8e39cfdb4b/aya-moon.jpg.png">
+    <link rel="preload" as="image" href="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            height: 100vh; 
+            height: 100dvh; 
+            overflow: hidden;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Tajawal', sans-serif;
+            position: relative;
+        }
+
+        /* شاشة التحميل */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: 'Lalezar';
+            font-size: 1.5rem;
+        }
+
+        /* خلفية النجوم */
+        #starsCanvas {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+        }
+
+        /* --- إعدادات القمر (موبايل) --- */
+        .moon-container {
+            position: absolute;
+            top: 50px; 
+            right: 15px;
+            width: 70px; 
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+            animation: floatMoon 6s ease-in-out infinite alternate;
+            transition: all 0.5s ease; 
+        }
+
+        .moon-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transform: scale(1.3);
+        }
+
+        /* حاوية القلوب */
+        #heartsContainer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2; 
+            pointer-events: none;
+        }
+
+        /* --- الكارت الزجاجي (موبايل) --- */
+        .glass-card {
+            position: relative;
+            z-index: 10; 
+            width: 90%;
+            max-width: 380px;
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px; 
+            padding: 25px 15px; 
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            margin-top: 20px; 
+            transition: all 0.5s ease;
+        }
+
+        /* الصورة الشخصية */
+        .avatar-box {
+            width: 100px; 
+            height: 100px;
+            margin: 0 auto 5px; 
+            border-radius: 50%;
+            padding: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .avatar-box img {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top; 
+        }
+
+        /* النصوص */
+        h1 {
+            font-family: 'Lalezar', cursive;
+            font-size: 2rem; 
+            margin: 5px 0 10px 0; 
+            color: #ffffff;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 0 3px 5px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+            transition: font-size 0.3s;
+        }
+
+        .text-area {
+            min-height: 130px; 
+            margin-bottom: 15px;
+            transition: min-height 0.3s;
+        }
+        p {
+            font-size: 0.95rem; 
+            line-height: 1.5;
+            color: #ffffff;
+            font-weight: 400;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+            padding: 0 5px;
+            transition: font-size 0.3s;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px; height: 14px;
+            background: #ff0033;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        /* الأزرار */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; 
+        }
+        button {
+            width: 100%;
+            padding: 12px; 
+            border-radius: 50px;
+            border: none;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-yes {
+            background: #ff0033;
+            color: #fff;
+            box-shadow: 0 5px 20px rgba(255, 0, 51, 0.3);
+        }
+        .btn-no {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ddd;
+            position: relative; /* عشان الحركة */
+        }
+
+        /* ================================================= */
+        /* تعديلات التابلت والويب (حجم الكارت ومكان القمر) */
+        /* ================================================= */
+
+        /* 1. التابلت (iPad / Tablet) */
+        @media (min-width: 768px) {
+            .glass-card {
+                max-width: 550px;
+                padding: 40px 30px;
+            }
+            .avatar-box {
+                width: 130px; height: 130px;
+                margin-bottom: 15px;
+            }
+            h1 {
+                font-size: 2.8rem;
+                margin-bottom: 20px;
+            }
+            p {
+                font-size: 1.2rem; line-height: 1.8;
+            }
+            .text-area {
+                min-height: 160px;
+            }
+            
+            /* تعديل مكان القمر للتابلت (نزلناه تحت شوية) */
+            .moon-container {
+                width: 110px; height: 110px;
+                top: 80px;  /* كان 40px، نزلناه بقى 80px */
+                right: 40px;
+            }
+            
+            button {
+                font-size: 1.2rem; padding: 15px;
+            }
+        }
+
+        /* 2. الكمبيوتر (Web / Desktop) */
+        @media (min-width: 1024px) {
+            .glass-card {
+                max-width: 650px;
+                padding: 50px 40px;
+                border-radius: 35px;
+            }
+            .avatar-box {
+                width: 150px; height: 150px;
+            }
+            h1 {
+                font-size: 3.5rem;
+            }
+            p {
+                font-size: 1.4rem;
+            }
+            
+            /* تعديل مكان القمر للويب (نزلناه تحت أكتر) */
+            .moon-container {
+                width: 150px; height: 150px;
+                top: 100px; /* كان 30px، نزلناه بقى 100px ليكون متناسق */
+                right: 80px;
+            }
+            
+            .btn-container {
+                flex-direction: row; 
+                justify-content: center;
+            }
+            button {
+                width: 45%;
+            }
+        }
+
+        /* ================================================= */
+
+        /* الإشعار */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #444;
+            color: #fff;
+            text-align: center;
+            border-radius: 50px;
+            padding: 12px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 20px;
+            font-size: 0.9rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.5s, top 0.5s;
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            top: 40px;
+        }
+
+        .final-msg {
+            display: none; margin-top: 15px;
+        }
+        .final-msg h2 {
+            font-family: 'Lalezar', cursive; color: #ff0033; font-size: 1.8rem;
+            text-shadow: 0 0 10px #000; margin-bottom: 5px;
+        }
+        .final-msg p { font-size: 1rem; }
+
+        .heart {
+            position: absolute; top: 55%; color: #ff0033; font-size: 20px;
+            opacity: 0; z-index: 5;
+            animation: riseFromBack linear forwards; 
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+        }
+
+        @keyframes floatMoon { 
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes riseFromBack {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-70vh) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">جاري التحميل ياجميل</div>
+    <div id="toast">انتي قلبك ابيض وهتسامحيني</div>
+    <canvas id="starsCanvas"></canvas>
+
+    <div class="moon-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg" alt="Moon" class="moon-img">
+    </div>
+
+    <div id="heartsContainer"></div>
+
+    <div class="glass-card">
+        <div class="avatar-box">
+            <img src="https://raw.githubusercontent.com/shehabt1000-boop/Moussa/8b657a1205d359eff3b68dfafca91b8e39cfdb4b/aya-moon.jpg.png" alt="Aya">
+        </div>
+
+        <h1>آيــــة</h1>
+        
+        <div class="text-area">
+            <p id="typingArea"><span class="cursor"></span></p>
+        </div>
+
+        <div class="btn-container" id="btns">
+            <button class="btn-yes" onclick="startCelebration()">مسامحاك ❤️</button>
+            <!-- اضفنا ontouchstart للموبايل عشان يشتغل الهروب برضه لو حبينا او ممكن نشيله -->
+            <button class="btn-no" id="noBtn" onmouseover="moveBtn()" onclick="showToast()">مش مسامحاك</button>
+        </div>
+
+        <div class="final-msg" id="successMsg">
+            <h2>بحبك ياموزتي</h2>
+            <p style="color: #fff;">اضحكي الدنيا متسواش من غير ضحكتك ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', openSite);
+        setTimeout(openSite, 3000); 
+
+        let isLoaded = false;
+        function openSite() {
+            if(isLoaded) return;
+            isLoaded = true;
+            document.getElementById('loader').style.display = 'none';
+            setTimeout(type, 1000);
+        }
+
+        // النجوم
+        const canvas = document.getElementById('starsCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, stars = [];
+        function resize() { width=window.innerWidth; height=window.innerHeight; canvas.width=width; canvas.height=height; initStars(); }
+        function initStars() { stars=[]; for(let i=0; i<100; i++) stars.push({x:Math.random()*width, y:Math.random()*height, r:Math.random()*1.5, speed:Math.random()*0.2+0.05}); }
+        function animateStars() { ctx.clearRect(0,0,width,height); ctx.fillStyle="white"; stars.forEach(s=>{ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fill();s.y-=s.speed;if(s.y<0){s.y=height;s.x=Math.random()*width;}}); requestAnimationFrame(animateStars); }
+        window.addEventListener('resize', resize); resize(); animateStars();
+
+        // الكتابة
+        const text = "القمر الي فوق ده منور السما.. بس انتي الي منوره حياتي كلها. حياتي من غيرك ضلمه وملهاش طعم. محستش بالحياة غير وانتي معايا. مجرد مبحس انك زعلانه بيتغير حالي لحالك ومبرتاحش غير لما تكوني كويسه ومرتاحه . مجرد مبشوف الضحكه علي وشك بيهون عليا هموم الدنيا كلها . سامحيني ياغالية مش هتتكرر تاني";
+        const typeArea = document.getElementById('typingArea');
+        let charIndex = 0;
+        function type() {
+            if (charIndex < text.length) {
+                let txt = text.substring(0, charIndex + 1).replace(/\n/g, '<br>');
+                typeArea.innerHTML = txt + '<span class="cursor"></span>';
+                charIndex++; 
+                setTimeout(type, 120); 
+            }
+        }
+
+        // دالة هروب الزر
+        function moveBtn() {
+            // بيتحرك بس لو الشاشة كبيرة (تابلت أو كمبيوتر) عشان في الموبايل ميبقاش رخم
+            if(window.innerWidth > 768) {
+                const btn = document.getElementById('noBtn');
+                // تقليل مسافة الهروب عشان ميبعدش أوي
+                const x = (Math.random() * 100) - 50; 
+                const y = (Math.random() * 100) - 50;
+                btn.style.transform = `translate(${x}px, ${y}px)`;
+            }
+        }
+
+        // إظهار الإشعار (بيظهر حتى لو الزر اتحرك)
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            // نخلي الزر يرجع مكانه عشان لو حبت تدوس تاني
+            setTimeout(() => {
+                const btn = document.getElementById('noBtn');
+                btn.style.transform = `translate(0, 0)`;
+            }, 1000);
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+
+        function startCelebration() {
+            document.getElementById('btns').style.display = 'none';
+            document.querySelector('.text-area').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+            
+            if(window.innerWidth > 1024) {
+                document.querySelector('.final-msg h2').style.fontSize = '4rem';
+                document.querySelector('.final-msg p').style.fontSize = '2rem';
+            }
+            
+            setInterval(createHeart, 200);
+        }
+
+        function createHeart() {
+            const container = document.getElementById('heartsContainer');
+            const heart = document.createElement('div');
+            heart.classList.add('heart'); heart.innerHTML = '❤️';
+            const randomLeft = 50 + (Math.random() * 60 - 30);
+            heart.style.left = randomLeft + '%';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 5 + 10) + 's';
+            container.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 15000);
+        }
+    </script>
+</body>
+</html>
