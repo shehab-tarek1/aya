@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>استعراض الصفحات</title>
+    <title>رسائل آية</title>
     
+    <!-- ========================================== -->
+    <!-- أكواد الميتا لظهور الصورة في معاينة الواتساب -->
+    <!-- ========================================== -->
+    <meta property="og:title" content="رسائل آية 💖">
+    <meta property="og:description" content="مجموعة رسائل لأجمل بنوتة.. اختاري الصفحة ✨">
+    <meta property="og:image" content="https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg">
+    <meta property="og:type" content="website">
+    
+    <!-- أكواد احتياطية لمنصات أخرى مثل تويتر/تليجرام -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="رسائل آية 💖">
+    <meta name="twitter:description" content="مجموعة رسائل لأجمل بنوتة.. اختاري الصفحة ✨">
+    <meta name="twitter:image" content="https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg">
+    <!-- ========================================== -->
+
     <!-- تحميل Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -15,9 +30,8 @@
 
     <style>
         body, html {
-            height: 100%;
+            min-height: 100%;
             margin: 0;
-            overflow: hidden; /* منع التمرير في الصفحة الرئيسية */
             font-family: 'Tajawal', sans-serif;
         }
 
@@ -30,7 +44,7 @@
             background-repeat: no-repeat;
         }
 
-        /* تأثير إضافي للأزرار لتظهر الخلفية من خلالها (شفافية مع بلور) */
+        /* تأثير إضافي للروابط لتظهر الخلفية من خلالها (شفافية مع بلور) */
         .glass-btn {
             background: rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(10px);
@@ -39,94 +53,44 @@
             color: #333;
             font-weight: bold;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
         }
         .glass-btn:hover {
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.7);
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            color: #db2777; /* لون وردي عند تمرير الماوس */
         }
     </style>
 </head>
-<body class="bg-custom-image flex flex-col h-screen">
+<body class="bg-custom-image flex flex-col min-h-screen">
 
-    <!-- شريط التنقل العلوي الزجاجي -->
-    <nav class="glass-nav p-3 flex justify-between items-center z-10 relative shadow-sm">
-        <!-- زر الرجوع -->
-        <button id="backBtn" onclick="showMenu()" class="hidden text-sm bg-rose-500/90 hover:bg-rose-600 text-white py-1.5 px-4 rounded-full transition-colors flex items-center gap-2 shadow-md">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-            رجوع للقائمة
-        </button>
-
-        <h1 class="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-rose-700 absolute left-1/2 transform -translate-x-1/2 drop-shadow-sm">
-            رسائل آية
-        </h1>
-        
-        <div class="w-24"></div>
-    </nav>
-
-    <!-- قائمة اختيار الصفحات -->
-    <div id="menuContainer" class="flex-1 flex flex-col items-center justify-center p-4 overflow-y-auto w-full">
+    <!-- قائمة اختيار الصفحات (أصبحت في المنتصف تماماً بعد إزالة الهيدر) -->
+    <div class="flex-1 flex flex-col items-center justify-center p-4 w-full">
         
         <div class="bg-white/30 backdrop-blur-md border border-white/50 p-6 rounded-3xl shadow-2xl max-w-lg w-full text-center">
             <h2 class="text-2xl font-extrabold text-gray-800 mb-6 drop-shadow-md">اختاري الصفحة يا أجمل بنوتة:</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                <!-- أزرار الصفحات (شفافة زجاجية) -->
-                <button onclick="loadPage('index.html')" class="glass-btn p-4 rounded-xl transition-all duration-300">
-                    الصفحة الرئيسية (index)
-                </button>
-                <button onclick="loadPage('Aya.html')" class="glass-btn p-4 rounded-xl transition-all duration-300">
+                <!-- الروابط تفتح الصفحات بشكل مباشر في نفس المتصفح -->
+                <a href="Aya.html" class="glass-btn p-4 rounded-xl transition-all duration-300">
                     صفحة آية (1)
-                </button>
-                <button onclick="loadPage('Aya1.html')" class="glass-btn p-4 rounded-xl transition-all duration-300">
+                </a>
+                <a href="Aya1.html" class="glass-btn p-4 rounded-xl transition-all duration-300">
                     صفحة آية (2)
-                </button>
-                <button onclick="loadPage('Aya2.html')" class="glass-btn p-4 rounded-xl transition-all duration-300">
+                </a>
+                <a href="Aya2.html" class="glass-btn p-4 rounded-xl transition-all duration-300">
                     صفحة آية (3)
-                </button>
-                <button onclick="loadPage('Aya3.html')" class="glass-btn p-4 rounded-xl transition-all duration-300">
+                </a>
+                <a href="Aya3.html" class="glass-btn p-4 rounded-xl transition-all duration-300">
                     صفحة آية (4)
-                </button>
-                <button onclick="loadPage('Aya4.html')" class="glass-btn p-4 rounded-xl transition-all duration-300">
-                    صفحة آية (5)
-                </button>
+                </a>
             </div>
         </div>
     </div>
 
-    <!-- إطار عرض الصفحات (مخفي في البداية) -->
-    <div id="iframeContainer" class="flex-1 w-full hidden bg-white/50 backdrop-blur-sm">
-        <iframe id="pageViewer" class="w-full h-full border-none" src=""></iframe>
-    </div>
-
-    <script>
-        const menuContainer = document.getElementById('menuContainer');
-        const iframeContainer = document.getElementById('iframeContainer');
-        const pageViewer = document.getElementById('pageViewer');
-        const backBtn = document.getElementById('backBtn');
-
-        function loadPage(pageUrl) {
-            menuContainer.classList.add('hidden');
-            iframeContainer.classList.remove('hidden');
-            backBtn.classList.remove('hidden');
-            pageViewer.src = pageUrl;
-        }
-
-        function showMenu() {
-            iframeContainer.classList.add('hidden');
-            menuContainer.classList.remove('hidden');
-            backBtn.classList.add('hidden');
-            pageViewer.src = "";
-        }
-    </script>
 </body>
 </html>
