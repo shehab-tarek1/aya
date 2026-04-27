@@ -4,84 +4,225 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>رسائل آية</title>
-    
+
     <meta property="og:title" content="رسائل آية 💖">
     <meta property="og:description" content="من شهاب لأجمل بنوتة.. اية اختاري الصفحة ✨">
     <meta property="og:image" content="https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg">
     <meta property="og:type" content="website">
-    
+
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="رسائل آية 💖">
     <meta name="twitter:description" content="من شهاب لأجمل بنوتة.. اية اختاري الصفحة ✨">
     <meta name="twitter:image" content="https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
         body, html {
-            min-height: 100%;
+            height: 100%;
             margin: 0;
             font-family: 'Tajawal', sans-serif;
-        }
-
-        /* إعداد صورة الخلفية للموقع */
-        .bg-custom-image {
-            background-image: url('https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }
-
-        /* تأثير إضافي للروابط لتظهر الخلفية من خلالها (شفافية مع بلور) */
-        .glass-btn {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            color: #333;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: #020208;
+            color: #ffffff;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
         }
+
+        /* --- خلفية الفضاء مع نجوم كثيفة جداً --- */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0a0a25 0%, #010105 100%);
+            z-index: -1;
+        }
+
+        /* طبقات النجوم المتعددة */
+        .stars-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1px 1px at 10% 10%, #fff, transparent),
+                radial-gradient(1.2px 1.2px at 25% 35%, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 50% 50%, #fff, transparent),
+                radial-gradient(1px 1px at 85% 15%, #fff, transparent),
+                radial-gradient(1.1px 1.1px at 95% 85%, #fff, transparent),
+                radial-gradient(1.5px 1.5px at 15% 75%, #fff, transparent),
+                radial-gradient(1px 1px at 40% 60%, #fff, transparent),
+                radial-gradient(2px 2px at 70% 80%, #fff, transparent),
+                radial-gradient(1px 1px at 75% 25%, #fff, transparent),
+                radial-gradient(1.3px 1.3px at 35% 15%, #fff, transparent);
+            background-size: 180px 180px;
+            animation: stars-twinkle 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes stars-twinkle {
+            0% { opacity: 0.3; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+
+        /* --- البطاقة مع شعاعين ضوئيين بلفوا ببطء --- */
+        .animated-border-card {
+            position: relative;
+            width: 320px;
+            border-radius: 2.5rem;
+            overflow: hidden;
+            padding: 3px; /* سمك الإطار */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+        }
+
+        /* الشعاع الأول */
+        .animated-border-card::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, #ffffff);
+            animation: rotate-border 8s linear infinite;
+        }
+
+        /* الشعاع الثاني (تمت إعادته كما طلبت) */
+        .animated-border-card::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, transparent, transparent, rgba(255, 255, 255, 0.6));
+            animation: rotate-border 8s linear infinite;
+            animation-delay: -4s; /* نصف الوقت بالضبط ليكون في الجهة المقابلة */
+        }
+
+        @keyframes rotate-border {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* المحتوى الداخلي للبطاقة */
+        .card-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 28, 0.92);
+            backdrop-filter: blur(25px);
+            border-radius: calc(2.5rem - 3px);
+            z-index: 10;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* نجوم داخل البطاقة */
+        .card-stars {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(1px 1px at 50% 50%, white, transparent);
+            background-size: 50px 50px;
+            opacity: 0.25;
+            z-index: -1;
+        }
+
+        /* إطار الصورة الأبيض */
+        .img-frame {
+            border: 2px solid white;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+            transition: transform 0.4s ease;
+        }
+        
+        .img-frame:hover {
+            transform: scale(1.08);
+        }
+
+        /* تصميم الأزرار الزجاجية بإطار أبيض */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+        }
+
         .glass-btn:hover {
-            background: rgba(255, 255, 255, 0.7);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-            color: #db2777; /* لون وردي عند تمرير الماوس */
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
         }
+
+        /* لمعة سريعة على الزر عند المرور */
+        .glass-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .glass-btn:hover::after {
+            left: 100%;
+        }
+
     </style>
 </head>
-<body class="bg-custom-image flex flex-col min-h-screen">
+<body>
 
-    <div class="flex-1 flex flex-col items-center justify-center p-4 w-full">
-        
-        <div class="bg-white/10 backdrop-blur-md border border-white/10 p-6 rounded-3xl shadow-2xl max-w-lg w-full text-center">
-            <h2 class="text-2xl font-extrabold text-gray-800 mb-6 drop-shadow-md">اختاري الصفحة يا أجمل بنوتة:</h2>
+    <!-- خلفية الفضاء الساحرة بنجوم كثيفة جداً -->
+    <div class="space-background">
+        <div class="stars-layer"></div>
+        <div class="stars-layer" style="background-size: 220px 220px; animation-duration: 9s; opacity: 0.7;"></div>
+        <div class="stars-layer" style="background-size: 350px 350px; animation-duration: 12s; opacity: 0.5;"></div>
+        <div class="stars-layer" style="background-size: 450px 450px; animation-duration: 15s; opacity: 0.3;"></div>
+    </div>
+
+    <!-- البطاقة الرئيسية بضوء مزدوج بلف ببطء -->
+    <div class="animated-border-card">
+        <div class="card-content">
+            <!-- نجوم تلمع داخل البطاقة -->
+            <div class="card-stars"></div>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-                <a href="Aya4.html" class="glass-btn p-4 rounded-xl transition-all duration-300">
-                    صفحة آية (1)
-                </a>
-                <a href="Aya1.html" class="glass-btn p-4 rounded-xl transition-all duration-300">
-                    صفحة آية (2)
-                </a>
-                <a href="Aya2.html" class="glass-btn p-4 rounded-xl transition-all duration-300">
-                    صفحة آية (3)
-                </a>
-                <a href="Aya3.html" class="glass-btn p-4 rounded-xl transition-all duration-300">
-                    صفحة آية (4)
-                </a>
-                <a href="Aya.html" class="glass-btn p-4 rounded-xl transition-all duration-300">
-                    صفحة آية (5)
+            <!-- صورة آية بنسبة 9:16 -->
+            <img src="https://res.cloudinary.com/db9h7zm1h/image/upload/v1771008727/jpfmjcfcbjfy60yu68qf.jpg" 
+                 alt="غلاف آية" 
+                 class="w-32 aspect-[9/16] object-cover rounded-2xl mb-7 img-frame">
+
+            <h1 class="text-xl font-extrabold text-white mb-6 text-center tracking-wide drop-shadow-lg">
+                بحبك يا أجمل بنوتة
+            </h1>
+
+            <!-- شبكة الأزرار الأنيقة -->
+            <div class="grid grid-cols-1 gap-4 w-full">
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="Aya4.html" class="glass-btn py-3 text-sm rounded-xl">صفحة آية (1)</a>
+                    <a href="Aya1.html" class="glass-btn py-3 text-sm rounded-xl">صفحة آية (2)</a>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="Aya2.html" class="glass-btn py-3 text-sm rounded-xl">صفحة آية (3)</a>
+                    <a href="Aya3.html" class="glass-btn py-3 text-sm rounded-xl">صفحة آية (4)</a>
+                </div>
+                <a href="Aya.html" class="glass-btn py-3.5 text-sm rounded-xl w-full border-white/50">
+                      صفحة آية (5) 
                 </a>
             </div>
+            
         </div>
     </div>
 
